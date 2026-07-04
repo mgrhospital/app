@@ -461,8 +461,132 @@
     .reveal{opacity:1;transform:none}
   }
 </style>
+
+<!-- Dark theme + preference controls -->
+<style>
+  /* ===== Dark Theme ===== */
+  [data-theme="dark"]{
+    --ink:#D6E8E2;
+    --petrol:#3BA899;
+    --petrol-deep:#8FD4C7;
+    --petrol-soft:#50B5A3;
+    --brass:#D4A85F;
+    --brass-bright:#E0B96E;
+    --mist:#0A1614;
+    --sage:#121F1C;
+    --sage-line:#1A302B;
+    --cloud:#0E1F1B;
+    --shadow:0 18px 50px -28px rgba(0,0,0,.6);
+    --shadow-sm:0 8px 24px -16px rgba(0,0,0,.5);
+  }
+  [data-theme="dark"] body{background:var(--mist);color:var(--ink)}
+  [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4{color:var(--petrol-deep)}
+  [data-theme="dark"] header.nav{background:rgba(10,22,20,.92);border-color:var(--sage-line)}
+  [data-theme="dark"] header.nav.scrolled{border-color:var(--sage-line);box-shadow:0 6px 24px -20px rgba(0,0,0,.7)}
+  [data-theme="dark"] .brand b{color:var(--petrol-deep)}
+  [data-theme="dark"] nav.links a.link{color:var(--ink)}
+  [data-theme="dark"] nav.links a.link:hover{color:var(--brass)}
+  [data-theme="dark"] .btn-ghost{color:var(--petrol-deep);border-color:var(--sage-line);background:transparent}
+  [data-theme="dark"] .btn-ghost:hover{border-color:var(--petrol);background:var(--sage)}
+  [data-theme="dark"] .btn-primary{background:var(--petrol);color:#fff}
+  [data-theme="dark"] .doc-hero, [data-theme="dark"] .specs{background:linear-gradient(165deg,#0D2E28,#081E1A)}
+  [data-theme="dark"] .about, [data-theme="dark"] .gallery{background:var(--mist)}
+  [data-theme="dark"] .chip{background:var(--sage);border-color:var(--sage-line)}
+  [data-theme="dark"] .float-badge{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .crest-stage::before{background:radial-gradient(circle at 50% 35%, var(--cloud), var(--sage) 70%)}
+  [data-theme="dark"] .doc-card{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .doc-card ul li{color:var(--ink)}
+  [data-theme="dark"] .spec{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .spec .ic{background:var(--sage)}
+  [data-theme="dark"] .spec .tag{background:rgba(182,138,76,.12);color:var(--brass)}
+  [data-theme="dark"] .why-card{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .why-card ul li{color:var(--ink)}
+  [data-theme="dark"] .care{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .care p{color:var(--ink)}
+  [data-theme="dark"] .gtile .cap{background:rgba(10,22,20,.88)}
+  [data-theme="dark"] .appt{background:linear-gradient(135deg,#0D2E28,#081E1A)}
+  [data-theme="dark"] .fees{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+  [data-theme="dark"] .frow{border-color:rgba(255,255,255,.08)}
+  [data-theme="dark"] .cinfo{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .cinfo .val{color:var(--ink)}
+  [data-theme="dark"] .location-card{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] footer{background:var(--sage);border-color:var(--sage-line)}
+  [data-theme="dark"] .foot-bottom{border-color:var(--sage-line)}
+  [data-theme="dark"] .action-bar{background:rgba(10,22,20,.95);border-color:var(--sage-line)}
+  [data-theme="dark"] .pwaib{background:#081E1A}
+  [data-theme="dark"] .topbar{background:#061412}
+  [data-theme="dark"] .timeline .item{border-color:var(--sage-line)}
+  [data-theme="dark"] .tl .item p{color:var(--ink)}
+  [data-theme="dark"] .hero p.lede{color:var(--ink)}
+  [data-theme="dark"] .sec-head p{color:var(--ink)}
+  [data-theme="dark"] .video-wrap{background:var(--cloud);border-color:var(--sage-line)}
+  [data-theme="dark"] .qr-modal .qr-card{background:var(--cloud);color:var(--ink)}
+  @media(max-width:680px){
+    [data-theme="dark"] nav.links{background:#0E1F1B;border-color:var(--sage-line)}
+    [data-theme="dark"] nav.links a.link{border-color:var(--sage-line)}
+  }
+
+  /* ===== Theme Toggle (side menu) ===== */
+  .nav-prefs{margin-top:auto;padding-top:20px;border-top:1px solid var(--sage-line);display:flex;flex-direction:column;gap:14px}
+  .pref-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .pref-label{font-size:.88rem;font-weight:600;color:var(--petrol-deep)}
+  .theme-toggle{position:relative;width:56px;height:30px;border-radius:999px;border:2px solid var(--sage-line);background:var(--sage);cursor:pointer;display:flex;align-items:center;padding:0 4px;transition:background .3s,border-color .3s}
+  .theme-toggle .tt-icon{font-size:.82rem;line-height:1;z-index:1;transition:opacity .3s}
+  .theme-toggle .tt-sun{opacity:1}
+  .theme-toggle .tt-moon{opacity:.4;margin-left:auto}
+  .theme-toggle .tt-knob{position:absolute;left:3px;width:22px;height:22px;border-radius:50%;background:var(--petrol);transition:left .3s ease,background .3s}
+  [data-theme="dark"] .theme-toggle{background:var(--sage);border-color:var(--sage-line)}
+  [data-theme="dark"] .theme-toggle .tt-sun{opacity:.4}
+  [data-theme="dark"] .theme-toggle .tt-moon{opacity:1}
+  [data-theme="dark"] .theme-toggle .tt-knob{left:calc(100% - 25px);background:var(--brass)}
+
+  /* ===== Language Switch (side menu) ===== */
+  .lang-switch{display:flex;gap:4px;background:var(--sage);border-radius:999px;padding:3px}
+  .lang-btn{border:none;background:transparent;color:var(--ink);font-size:.82rem;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+  .lang-btn.active{background:var(--petrol);color:#fff}
+  .lang-btn:hover:not(.active){background:var(--sage-line)}
+
+  /* ===== Desktop compact controls ===== */
+  .desktop-prefs{display:flex;align-items:center;gap:8px}
+  .theme-toggle-sm{background:none;border:1.5px solid var(--sage-line);border-radius:999px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:background .25s,border-color .25s}
+  .theme-toggle-sm:hover{border-color:var(--petrol);background:var(--sage)}
+  .theme-toggle-sm .tt-sun{display:inline}
+  .theme-toggle-sm .tt-moon{display:none}
+  [data-theme="dark"] .theme-toggle-sm .tt-sun{display:none}
+  [data-theme="dark"] .theme-toggle-sm .tt-moon{display:inline}
+  .lang-switch-sm{display:flex;gap:2px;background:var(--sage);border-radius:999px;padding:2px}
+  .lang-btn-sm{border:none;background:transparent;color:var(--ink);font-size:.72rem;font-weight:700;padding:4px 8px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+  .lang-btn-sm.active{background:var(--petrol);color:#fff}
+  .lang-btn-sm:hover:not(.active){background:var(--sage-line)}
+  
+  /* ===== Lightbox ===== */
+  .gtile{cursor:pointer}
+  .lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+  .lightbox.active{opacity:1;pointer-events:auto}
+  .lb-img{max-width:90vw;max-height:75vh;object-fit:contain;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.8)}
+  .lb-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:2rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+  .lb-close:hover{background:rgba(255,255,255,.25)}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:2rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s;z-index:2}
+  .lb-nav:hover{background:rgba(255,255,255,.25)}
+  .lb-prev{left:20px}
+  .lb-next{right:20px}
+  .lb-cap{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#fff;text-align:center;max-width:80%;font-size:1.1rem;line-height:1.4;background:rgba(0,0,0,.6);padding:10px 20px;border-radius:20px;pointer-events:none}
+  
+  @media(max-width:680px){
+    .desktop-prefs{display:none}
+    .lb-nav{width:40px;height:40px;font-size:1.5rem}
+    .lb-prev{left:10px}
+    .lb-next{right:10px}
+    .lb-cap{bottom:20px;width:90%;font-size:1rem}
+    .lb-img{max-width:96vw;max-height:70vh}
+  }
+  @media(min-width:681px){
+    .nav-prefs{display:none}
+  }
+</style>
 </head>
 <body>
+<script>try{var t=localStorage.getItem('mgr-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
 <!-- PWA install banner (in-flow, sits above the sticky header; hidden until installable) -->
 <div id="pwaib" class="pwaib" role="region" aria-label="Install app" hidden>
@@ -499,23 +623,55 @@
       <span class="logo-full brand-logo" role="img" aria-label="MGR Hospital"></span>
     </a>
     <nav class="links" id="navlinks">
-      <a class="link" href="#about">About</a>
-      <a class="link" href="#specializations">Specializations</a>
-      <a class="link" href="#approach">Our Approach</a>
-      <a class="link" href="#gallery">Gallery</a>
-      <a class="link" href="#contact">Visit</a>
+      <a class="link" href="#about" data-i18n="nav.about">About</a>
+      <a class="link" href="#specializations" data-i18n="nav.specs">Specializations</a>
+      <a class="link" href="#approach" data-i18n="nav.approach">Our Approach</a>
+      <a class="link" href="#gallery" data-i18n="nav.gallery">Gallery</a>
+      <a class="link" href="#contact" data-i18n="nav.visit">Visit</a>
 
       <div class="nav-social">
-        <span class="nav-social-label">Follow us</span>
+        <span class="nav-social-label" data-i18n="nav.followus">Follow us</span>
         <div class="nav-social-row" id="navSocialRow">
           <a href="https://www.instagram.com/mgr_hospital_vizag" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igGradNav" cx="0.3" cy="1.05" r="1.1"><stop offset="0" stop-color="#FED576"/><stop offset="0.26" stop-color="#F47133"/><stop offset="0.5" stop-color="#BC3081"/><stop offset="0.78" stop-color="#4C63D2"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGradNav)"/><rect x="6.4" y="6.4" width="11.2" height="11.2" rx="3.6" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.4" cy="7.6" r="1.15" fill="#fff"/></svg></a>
           <a href="https://youtube.com/@ganeswararaometta-m8p" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="#FF0000"/><path d="M10 8.3l6 3.7-6 3.7z" fill="#fff"/></svg></a>
           <a href="https://www.facebook.com/share/1Cesjemfi3/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="#1877F2"/><g transform="translate(12 12) scale(.86) translate(-12 -12)"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z" fill="#fff"/></g></svg></a>
         </div>
       </div>
+
+      <!-- Theme & Language controls (side menu) -->
+      <div class="nav-prefs">
+        <div class="pref-row">
+          <span class="pref-label" data-i18n="nav.theme">Theme</span>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="tt-icon tt-sun">☀️</span>
+            <span class="tt-icon tt-moon">🌙</span>
+            <span class="tt-knob"></span>
+          </button>
+        </div>
+        <div class="pref-row">
+          <span class="pref-label" data-i18n="nav.language">Language</span>
+          <div class="lang-switch" id="langSwitch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="te">తె</button>
+            <button class="lang-btn" data-lang="hi">हि</button>
+          </div>
+        </div>
+      </div>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-appt" href="#appointment">Appointment</a>
+      <!-- Desktop compact controls -->
+      <div class="desktop-prefs">
+        <button class="theme-toggle-sm" id="themeToggleSm" aria-label="Toggle dark mode">
+          <span class="tt-icon tt-sun">☀️</span>
+          <span class="tt-icon tt-moon">🌙</span>
+        </button>
+        <div class="lang-switch-sm" id="langSwitchSm">
+          <button class="lang-btn-sm active" data-lang="en">EN</button>
+          <button class="lang-btn-sm" data-lang="te">తె</button>
+          <button class="lang-btn-sm" data-lang="hi">हि</button>
+        </div>
+      </div>
+      <a class="btn btn-ghost btn-appt" href="#appointment" data-i18n="nav.appointment">Appointment</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -1083,6 +1239,232 @@
     banner.querySelector('.pwaib__text').style.flex = '1';
     setTimeout(function(){ if (!dismissed() && !isStandalone()) banner.hidden = false; }, 1500);
   }
+})();
+</script>
+
+<!-- Theme toggle + Language switcher -->
+<script>
+(function(){
+  /* ===== THEME TOGGLE ===== */
+  var THEME_KEY = 'mgr-theme';
+  function getTheme(){ return localStorage.getItem(THEME_KEY) || 'light'; }
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    localStorage.setItem(THEME_KEY, t);
+  }
+  applyTheme(getTheme());
+
+  var themeToggle = document.getElementById('themeToggle');
+  var themeToggleSm = document.getElementById('themeToggleSm');
+  function toggleTheme(){
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  }
+  if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
+  if(themeToggleSm) themeToggleSm.addEventListener('click', toggleTheme);
+
+  /* ===== LANGUAGE SWITCHER ===== */
+  var LANG_KEY = 'mgr-lang';
+  var currentLang = localStorage.getItem(LANG_KEY) || 'en';
+
+  /* Translation map: CSS selector → {en, te, hi} */
+  var i18n = [
+    // Nav
+    {s:'[data-i18n="nav.about"]',en:'About',te:'గురించి',hi:'परिचय'},
+    {s:'[data-i18n="nav.specs"]',en:'Specializations',te:'ప్రత్యేకతలు',hi:'विशेषज्ञताएँ'},
+    {s:'[data-i18n="nav.approach"]',en:'Our Approach',te:'మా విధానం',hi:'हमारा दृष्टिकोण'},
+    {s:'[data-i18n="nav.gallery"]',en:'Gallery',te:'గ్యాలరీ',hi:'गैलरी'},
+    {s:'[data-i18n="nav.visit"]',en:'Visit',te:'సందర్శించండి',hi:'संपर्क'},
+    {s:'[data-i18n="nav.appointment"]',en:'Appointment',te:'అపాయింట్‌మెంట్',hi:'अपॉइंटमेंट'},
+    {s:'[data-i18n="nav.followus"]',en:'Follow us',te:'మమ్మల్ని అనుసరించండి',hi:'हमें फॉलो करें'},
+    {s:'[data-i18n="nav.theme"]',en:'Theme',te:'థీమ్',hi:'थीम'},
+    {s:'[data-i18n="nav.language"]',en:'Language',te:'భాష',hi:'भाषा'},
+
+    // Hero
+    {s:'.ribbon',en:'★ 3× Best Surgeon · Vizag',te:'★ 3× ఉత్తమ సర్జన్ · విశాఖ',hi:'★ 3× सर्वश्रेष्ठ सर्जन · विशाखा'},
+    {s:'.doc-hero-creds li:nth-child(1)',en:'Former Head of General Surgery, King George Hospital',te:'కింగ్ జార్జ్ హాస్పిటల్, జనరల్ సర్జరీ మాజీ అధిపతి',hi:'किंग जॉर्ज अस्पताल, जनरल सर्जरी के पूर्व प्रमुख'},
+    {s:'.doc-hero-creds li:nth-child(2)',en:'Apollo-trained in laparoscopic surgery',te:'అపోలోలో లాపరోస్కోపిక్ సర్జరీ శిక్షణ',hi:'अपोलो में लेप्रोस्कोपिक सर्जरी प्रशिक्षित'},
+    {s:'.doc-hero-creds li:nth-child(3)',en:'25+ years — gall bladder, hernia, thyroid, breast & more',te:'25+ సంవత్సరాలు — పిత్తాశయం, హెర్నియా, థైరాయిడ్, స్తనం & మరిన్ని',hi:'25+ वर्ष — पित्ताशय, हर्निया, थायरॉइड, स्तन व अधिक'},
+
+    // About
+    {s:'#about .eyebrow',en:'About the surgeon',te:'సర్జన్ గురించి',hi:'सर्जन के बारे में'},
+    {s:'#about .sec-head h2',en:'A career built inside the institutions Vizag trusts.',te:'విశాఖ నమ్మే సంస్థల్లో నిర్మించిన వృత్తిజీవితం.',hi:'विशाखा की भरोसेमंद संस्थाओं में बना करियर।'},
+    {s:'#about .sec-head p',en:'Reputation in surgery is earned slowly. Dr. Rao spent decades teaching and leading at the city\u2019s largest public hospital before bringing that same standard of care to MGR Hospital.',te:'సర్జరీలో ప్రతిష్ఠ నెమ్మదిగా సాధించబడుతుంది. డా. రావు నగరంలోని అతిపెద్ద ప్రభుత్వ ఆసుపత్రిలో దశాబ్దాలు బోధన మరియు నాయకత్వం చేసి, అదే సేవా ప్రమాణాన్ని MGR హాస్పిటల్‌కు తీసుకొచ్చారు.',hi:'सर्जरी में प्रतिष्ठा धीरे-धीरे अर्जित होती है। डॉ. राव ने शहर के सबसे बड़े सरकारी अस्पताल में दशकों तक अध्यापन और नेतृत्व किया, फिर वही देखभाल का स्तर MGR अस्पताल में लाए।'},
+
+    // Timeline
+    {s:'.timeline h3',en:'The path behind the practice',te:'వైద్య ప్రయాణం',hi:'अभ्यास के पीछे का मार्ग'},
+    {s:'.timeline .intro',en:'Each role added to a surgeon patients can rely on \u2014 academic depth, leadership, and a long record of careful operating.',te:'ప్రతి పాత్ర రోగులు నమ్మగలిగే ఒక సర్జన్‌ని నిర్మించింది — విద్యా లోతు, నాయకత్వం మరియు జాగ్రత్తగా ఆపరేషన్ చేసిన సుదీర్ఘ రికార్డు.',hi:'हर भूमिका ने एक ऐसे सर्जन को गढ़ा जिस पर मरीज़ भरोसा कर सकें — शैक्षणिक गहराई, नेतृत्व, और सावधानीपूर्ण ऑपरेशन का लंबा रिकॉर्ड।'},
+
+    // Specializations
+    {s:'#specializations .eyebrow',en:'Areas of expertise',te:'నైపుణ్య రంగాలు',hi:'विशेषज्ञता के क्षेत्र'},
+    {s:'#specializations .sec-head h2',en:'Procedures, explained plainly.',te:'ప్రక్రియలు, సరళంగా వివరించబడినవి.',hi:'प्रक्रियाएँ, सरल भाषा में।'},
+    {s:'#specializations .sec-head p',en:'General surgery covers the careful preoperative, operative and post-operative management of a wide range of conditions. These are the procedures Dr. Rao performs most often.',te:'జనరల్ సర్జరీ అనేక పరిస్థితుల యొక్క జాగ్రత్తగా ఆపరేషన్ పూర్వ, ఆపరేషన్ మరియు ఆపరేషన్ అనంతర నిర్వహణను కలిగి ఉంటుంది. డా. రావు ఎక్కువగా చేసే ప్రక్రియలు ఇవి.',hi:'जनरल सर्जरी में कई स्थितियों का सावधानीपूर्ण ऑपरेशन-पूर्व, ऑपरेशन और ऑपरेशन-पश्चात प्रबंधन शामिल है। ये वो प्रक्रियाएँ हैं जो डॉ. राव सबसे अधिक करते हैं।'},
+
+    // Spec cards (titles)
+    {s:'.spec-grid .spec:nth-child(1) h4',en:'Gall bladder stones',te:'పిత్తాశయ రాళ్ళు',hi:'पित्ताशय की पथरी'},
+    {s:'.spec-grid .spec:nth-child(2) h4',en:'Hernia repair',te:'హెర్నియా మరమ్మతు',hi:'हर्निया की मरम्मत'},
+    {s:'.spec-grid .spec:nth-child(3) h4',en:'Piles, fissure & fistula',te:'మూలవ్యాధి, ఫిషర్ & ఫిస్టులా',hi:'बवासीर, फिशर और भगंदर'},
+    {s:'.spec-grid .spec:nth-child(4) h4',en:'Thyroid surgery',te:'థైరాయిడ్ సర్జరీ',hi:'थायरॉइड सर्जरी'},
+    {s:'.spec-grid .spec:nth-child(5) h4',en:'Breast tumours',te:'స్తన కణతులు',hi:'स्तन ट्यूमर'},
+    {s:'.spec-grid .spec:nth-child(6) h4',en:'Appendix & hysterectomy',te:'అపెండిక్స్ & హిస్టెరెక్టమీ',hi:'अपेंडिक्स और हिस्टेरेक्टॉमी'},
+
+    // Approach
+    {s:'#approach .sec-head:first-child .eyebrow',en:'Our approach',te:'మా విధానం',hi:'हमारा दृष्टिकोण'},
+    {s:'#approach .sec-head:first-child h2',en:'Two ways to operate \u2014 always the right one for you.',te:'ఆపరేషన్ చేయడానికి రెండు మార్గాలు — ఎల్లప్పుడూ మీకు సరైనది.',hi:'ऑपरेशन के दो तरीक़े — हमेशा आपके लिए सही।'},
+    {s:'#approach .why-card:nth-child(1) .lab',en:'Minimally invasive',te:'కనిష్ట ఆక్రమణ',hi:'न्यूनतम चीरा'},
+    {s:'#approach .why-card:nth-child(1) h3',en:'Laparoscopic surgery',te:'లాపరోస్కోపిక్ సర్జరీ',hi:'लेप्रोस्कोपिक सर्जरी'},
+    {s:'#approach .why-card:nth-child(2) .lab',en:'When it\u2019s the safer choice',te:'సురక్షితమైన ఎంపిక అయినప్పుడు',hi:'जब यह सुरक्षित विकल्प हो'},
+    {s:'#approach .why-card:nth-child(2) h3',en:'Open surgery',te:'ఓపెన్ సర్జరీ',hi:'ओपन सर्जरी'},
+
+    // Care stages
+    {s:'#approach .care:nth-child(1) h4',en:'Before surgery',te:'సర్జరీకి ముందు',hi:'सर्जरी से पहले'},
+    {s:'#approach .care:nth-child(2) h4',en:'During surgery',te:'సర్జరీ సమయంలో',hi:'सर्जरी के दौरान'},
+    {s:'#approach .care:nth-child(3) h4',en:'After surgery',te:'సర్జరీ తర్వాత',hi:'सर्जरी के बाद'},
+
+    // Gallery
+    {s:'#gallery .eyebrow',en:'Inside MGR Hospital',te:'MGR హాస్పిటల్ లోపల',hi:'MGR अस्पताल के अंदर'},
+    {s:'#gallery .sec-head h2',en:'A hospital equipped for safe surgery.',te:'సురక్షిత సర్జరీ కోసం సన్నద్ధమైన ఆసుపత్రి.',hi:'सुरक्षित सर्जरी के लिए सुसज्जित अस्पताल।'},
+
+    // Appointment
+    {s:'#appointment .eyebrow',en:'Book a consultation',te:'సంప్రదింపు బుక్ చేయండి',hi:'परामर्श बुक करें'},
+    {s:'#appointment h2',en:'Talk to Dr. Rao about what\u2019s worrying you.',te:'మిమ్మల్ని ఆందోళనపరుస్తున్న విషయం గురించి డా. రావుతో మాట్లాడండి.',hi:'डॉ. राव से अपनी चिंता के बारे में बात करें।'},
+    {s:'.fees .frow:nth-child(1) span',en:'Consultation \u2014 prior appointment',te:'సంప్రదింపు — ముందస్తు అపాయింట్‌మెంట్',hi:'परामर्श — पूर्व अपॉइंटमेंट'},
+    {s:'.fees .frow:nth-child(2) span',en:'Consultation \u2014 direct visit',te:'సంప్రదింపు — ప్రత్యక్ష సందర్శన',hi:'परामर्श — सीधे आएँ'},
+
+    // Contact
+    {s:'#contact .eyebrow',en:'Visit us',te:'మమ్మల్ని సందర్శించండి',hi:'हमसे मिलें'},
+    {s:'#contact .sec-head h2',en:'Find MGR Hospital & navigate in one tap.',te:'MGR హాస్పిటల్ కనుగొని ఒక ట్యాప్‌లో నావిగేట్ చేయండి.',hi:'MGR अस्पताल खोजें और एक टैप में नेविगेट करें।'},
+    {s:'.contact-list .cinfo:nth-child(1) .lab',en:'Hospital line',te:'ఆసుపత్రి ఫోన్',hi:'अस्पताल फ़ोन'},
+    {s:'.contact-list .cinfo:nth-child(1) .sub',en:'For appointments & emergencies',te:'అపాయింట్‌మెంట్లు & ఎమర్జెన్సీల కోసం',hi:'अपॉइंटमेंट और आपातकाल के लिए'},
+    {s:'.contact-list .cinfo:nth-child(3) .sub',en:'For records & general enquiries',te:'రికార్డులు & సాధారణ విచారణల కోసం',hi:'रिकॉर्ड और सामान्य पूछताछ के लिए'},
+    {s:'.loc-info .lab',en:'Our location',te:'మా స్థానం',hi:'हमारा स्थान'},
+
+    // Video
+    {s:'#video .eyebrow',en:'Watch',te:'చూడండి',hi:'देखें'},
+    {s:'#video .sec-head h2',en:'A closer look at MGR Hospital.',te:'MGR హాస్పిటల్ దగ్గరి చూపు.',hi:'MGR अस्पताल पर करीबी नज़र।'},
+
+    // Footer
+    {s:'footer h5:nth-of-type(1)',en:'Explore',te:'అన్వేషించండి',hi:'देखें'},
+    {s:'footer h5:nth-of-type(2)',en:'Reach us',te:'మమ్మల్ని సంప్రదించండి',hi:'हमसे संपर्क'},
+    {s:'.foot-social-label',en:'Follow us',te:'మమ్మల్ని అనుసరించండి',hi:'हमें फॉलो करें'},
+
+    // Action bar
+    {s:'.ab-call .ab-lbl',en:'Call us',te:'కాల్ చేయండి',hi:'कॉल करें'},
+    {s:'.ab-wa .ab-lbl',en:'Book an appointment',te:'బుక్ చేయండి',hi:'बुक करें'},
+    {s:'.ab-nav .ab-lbl',en:'Navigate',te:'నావిగేట్',hi:'नेविगेट'},
+
+    // PWA banner
+    {s:'.pwaib__text strong',en:'Install MGR Hospital',te:'MGR హాస్పిటల్ ఇన్‌స్టాల్ చేయండి',hi:'MGR अस्पताल इंस्टॉल करें'},
+  ];
+
+  function setLanguage(lang){
+    currentLang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.setAttribute('lang', lang === 'te' ? 'te' : lang === 'hi' ? 'hi' : 'en');
+    i18n.forEach(function(item){
+      var els = document.querySelectorAll(item.s);
+      els.forEach(function(el){ el.textContent = item[lang] || item.en; });
+    });
+    // Sync active state on all lang buttons
+    document.querySelectorAll('.lang-btn, .lang-btn-sm').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  // Wire up language buttons (side menu + desktop)
+  ['langSwitch','langSwitchSm'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-lang]');
+      if(!btn) return;
+      setLanguage(btn.getAttribute('data-lang'));
+    });
+  });
+
+  // Apply saved language on load
+  if(currentLang !== 'en') setLanguage(currentLang);
+  else {
+    // Sync active buttons even for default English
+    document.querySelectorAll('.lang-btn, .lang-btn-sm').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === 'en');
+    });
+  }
+})();
+</script>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image Gallery">
+  <button id="lbClose" class="lb-close" aria-label="Close">&times;</button>
+  <button id="lbPrev" class="lb-nav lb-prev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" class="lb-img" src="" alt="Gallery Image">
+  <button id="lbNext" class="lb-nav lb-next" aria-label="Next">&#8250;</button>
+  <div id="lbCap" class="lb-cap"></div>
+</div>
+
+<script>
+/* ===== Lightbox ===== */
+(function(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var lbClose = document.getElementById('lbClose');
+  if(!lb) return;
+
+  var galleryItems = [];
+  var currentLbIndex = 0;
+
+  var gtiles = document.querySelectorAll('.gallery-grid .gtile');
+  gtiles.forEach(function(tile, i){
+    var imgEl = tile.querySelector('.portrait-img');
+    var capEl = tile.querySelector('.cap');
+    var src = '';
+    if(imgEl.tagName === 'IMG'){
+      src = imgEl.src;
+    } else {
+      var bg = getComputedStyle(imgEl).backgroundImage;
+      src = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+    }
+    var capHtml = capEl ? capEl.innerHTML.replace(/<small>.*?<\/small>/, '').trim() : '';
+    galleryItems.push({ src: src, cap: capHtml });
+
+    tile.addEventListener('click', function(){
+      currentLbIndex = i;
+      updateLightbox();
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function updateLightbox() {
+    var item = galleryItems[currentLbIndex];
+    lbImg.src = item.src;
+    lbCap.innerHTML = item.cap;
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function prevLb(e) { if(e) e.stopPropagation(); currentLbIndex = (currentLbIndex - 1 + galleryItems.length) % galleryItems.length; updateLightbox(); }
+  function nextLb(e) { if(e) e.stopPropagation(); currentLbIndex = (currentLbIndex + 1) % galleryItems.length; updateLightbox(); }
+
+  lbPrev.addEventListener('click', prevLb);
+  lbNext.addEventListener('click', nextLb);
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', function(e){
+    if(e.target === lb || e.target === lbImg) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('active')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') prevLb();
+    if(e.key === 'ArrowRight') nextLb();
+  });
 })();
 </script>
 </body>

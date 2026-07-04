@@ -1,5 +1,5 @@
 /* MGR Hospital — service worker (offline app shell) */
-const CACHE = 'mgr-hospital-v2';
+const CACHE = 'mgr-hospital-v10';
 
 const PRECACHE = [
   "./",
