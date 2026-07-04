@@ -83,10 +83,7 @@
   .btn-ghost:hover{transform:translateY(-3px);border-color:var(--petrol);background:#fff}
   .btn-wa{background:var(--whatsapp);color:#063}
   .btn-wa:hover{transform:translateY(-3px);box-shadow:0 16px 34px -18px rgba(37,211,102,.8)}
-  /* Enlarge the header "Book on WhatsApp" CTA in web/desktop view (above the mobile-drawer breakpoint) */
-  @media(min-width:681px){
-    nav.links a.btn.btn-primary{font-size:1.1rem;padding:1em 2.05em;font-weight:700;box-shadow:0 12px 26px -14px rgba(15,76,69,.55)}
-  }
+
 
   /* ---------- Top contact bar ---------- */
   .topbar{
@@ -507,7 +504,7 @@
       <a class="link" href="#approach">Our Approach</a>
       <a class="link" href="#gallery">Gallery</a>
       <a class="link" href="#contact">Visit</a>
-      <a class="btn btn-primary" href="https://wa.me/919573247590?text=Hello%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20MGR%20Hospital." target="_blank" rel="noopener">Book on WhatsApp</a>
+
       <div class="nav-social">
         <span class="nav-social-label">Follow us</span>
         <div class="nav-social-row" id="navSocialRow">
@@ -1045,16 +1042,19 @@
   var hint      = document.getElementById('pwaibHint');
   if (!banner) return;
 
-  var DISMISS_KEY = 'mgr-pwa-dismissed';
-  function dismissed(){ try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch(e){ return false; } }
-  function remember(){ try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e){} }
+  // One-time cleanup: remove old permanent dismiss key so banner shows again
+  try { localStorage.removeItem('mgr-pwa-dismissed'); } catch(e){}
+
+  var DISMISS_KEY = 'mgr-pwa-dismissed-session';
+  function dismissed(){ try { return sessionStorage.getItem(DISMISS_KEY) === '1'; } catch(e){ return false; } }
+  function remember(){ try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch(e){} }
   function isStandalone(){
     return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   }
 
   closeBtn.addEventListener('click', function(){ banner.hidden = true; remember(); });
 
-  // Already installed, or dismissed before → never show
+  // Already running as installed app, or dismissed this session → don't show
   if (isStandalone() || dismissed()) return;
 
   // Android / desktop Chromium: capture the native install prompt
@@ -1071,7 +1071,7 @@
     deferredPrompt.prompt();
     deferredPrompt.userChoice.finally(function(){ deferredPrompt = null; banner.hidden = true; });
   });
-  window.addEventListener('appinstalled', function(){ banner.hidden = true; remember(); });
+  window.addEventListener('appinstalled', function(){ banner.hidden = true; });
 
   // iOS Safari: no install prompt API → show manual "Add to Home Screen" hint
   var ua = navigator.userAgent || '';
