@@ -1,9 +1,14 @@
 /* MGR Hospital — service worker (offline app shell) */
-const CACHE = 'mgr-hospital-v15';
+const CACHE = 'mgr-hospital-v16';
 
 const PRECACHE = [
   "./",
   "index.html",
+  "about.html",
+  "services.html",
+  "gallery.html",
+  "contact.html",
+  "styles.css",
   "manifest.webmanifest",
   "assets/fonts/allura-400-latin-ext.woff2",
   "assets/fonts/allura-400-latin.woff2",
