@@ -1,5 +1,5 @@
 /* MGR Hospital — service worker (offline app shell) */
-const CACHE = 'mgr-hospital-v16';
+const CACHE = 'mgr-hospital-v20';
 
 const PRECACHE = [
   "./",
@@ -8,8 +8,14 @@ const PRECACHE = [
   "services.html",
   "gallery.html",
   "contact.html",
+  "gall-bladder-stone-surgery-vizag.html",
+  "hernia-surgery-vizag.html",
+  "piles-fissure-fistula-treatment-vizag.html",
+  "thyroid-surgery-vizag.html",
   "styles.css",
+  "assets/js/app.js",
   "manifest.webmanifest",
+  "favicon.ico",
   "assets/fonts/allura-400-latin-ext.woff2",
   "assets/fonts/allura-400-latin.woff2",
   "assets/fonts/allura-400-vietnamese.woff2",
@@ -35,6 +41,11 @@ const PRECACHE = [
   "assets/fonts/ibm-plex-mono-500-latin.woff2",
   "assets/fonts/ibm-plex-mono-500-vietnamese.woff2",
   "assets/img/best-surgeon-in-vizag.jpg",
+  "assets/img/dr-m-ganeswara-rao-surgeon-visakhapatnam.jpg",
+  "assets/img/logo-full.png",
+  "assets/img/logo-emblem.png",
+  "assets/img/hero-doctor.jpg",
+  "assets/img/hero-building.jpg",
   "assets/img/gall-bladder-surgeon.jpg",
   "assets/img/mgr-hospital-casualty-room.jpg",
   "assets/img/mgr-hospital-deluxe-room.jpg",
